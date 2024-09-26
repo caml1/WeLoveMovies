@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const knex = require("../db/connection"); // Your Knex connection setup
+const knex = require("../db/connection"); 
 
 // GET /movies/:movieId - Get a single movie by ID
 router.get("/movies/:movieId", async (req, res, next) => {

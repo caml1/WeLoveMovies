@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const knex = require('../db/connection'); // Your Knex connection setup
+const knex = require('../db/connection'); 
 
 // DELETE /reviews/:reviewId - Delete a review by ID
 router.delete('/reviews/:reviewId', async (req, res, next) => {
