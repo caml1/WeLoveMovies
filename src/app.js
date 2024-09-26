@@ -1,6 +1,10 @@
 if (process.env.USER) require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 const app = express();
+
+// Enable CORS for all routes and origins
+app.use(cors());
 
 // Middleware to parse JSON request bodies
 app.use(express.json()); // This parses incoming requests with JSON payloads
@@ -20,10 +24,9 @@ app.use(reviewsUpdateRouter);
 app.use(theatersListRouter);
 
 app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(404).json({ error: "An unexpected error occurred." });
+  console.error(err.stack);
+  res.status(404).json({ error: "An unexpected error occurred." });
 });
-
 
 // Use Routes with Base Paths
 // app.use("/movies", moviesListRouter);
@@ -34,13 +37,13 @@ app.use((err, req, res, next) => {
 
 // 404 Not Found handler for unmatched routes
 app.use((req, res, next) => {
-    res.status(404).json({ error: "Not found" });
+  res.status(404).json({ error: "Not found" });
 });
 
 // General Error Handling Middleware
 app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).json({ error: "An unexpected error occurred." });
+  console.error(err.stack);
+  res.status(500).json({ error: "An unexpected error occurred." });
 });
 
 module.exports = app;
